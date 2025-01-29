@@ -30,6 +30,7 @@ class Nave extends Componente {
 
         if (this.y > myGame.canvas.height - this.height){
             this.y = 20;
+			this.x = Math.floor (Math.random() * (myGame.canvas.width - 96)) + 48;
         }
 
         this.enemyBullets.forEach(enemyBullet => {
@@ -42,58 +43,63 @@ class Nave extends Componente {
     }
 
     update(){
-        /** Primeiro Polĩgono (asas) */
+        this.ctx.fillStyle  = "#707070";
+		this.ctx.fillRect(this.x-14, this.y-12, 28, 8);
+		this.ctx.fillRect(this.x-5, this.y+6, 10, 10);
+        
+		/** Primeiro Poligono (asas) */
         this.ctx.fillStyle  = this.color;
         this.ctx.beginPath();
         this.ctx.moveTo(this.x, this.y+4);
         this.ctx.lineTo(this.x+24, this.y-16);
-        this.ctx.lineTo(this.x, this.y-10);
+        this.ctx.lineTo(this.x, this.y-12);
         this.ctx.lineTo(this.x-24, this.y-16);
         this.ctx.lineTo(this.x, this.y+4);
         this.ctx.fill();
-        
-        /** Primeiro Losango do Corpo */
-        this.ctx.fillStyle  = "#808080";
+
+       
+        /** Segundo Poligono (corpo) */
+        this.ctx.fillStyle  = "#a0a0a0";
         this.ctx.strokeStyle  = this.color;
         this.ctx.beginPath();
-        this.ctx.moveTo(this.x, this.y+24);
-        this.ctx.lineTo(this.x+8, this.y-4);
-        this.ctx.lineTo(this.x, this.y-20);
-        this.ctx.lineTo(this.x-8, this.y-4);
+        this.ctx.moveTo(this.x, this.y-20);
+        this.ctx.lineTo(this.x+8, this.y-14);
         this.ctx.lineTo(this.x, this.y+24);
-        this.ctx.stroke();
-        this.ctx.fill();
-
-        /** Segungo Losango do Corpo */
-        this.ctx.fillStyle  = "#404040";
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.x, this.y+16);
-        this.ctx.lineTo(this.x+6, this.y-12);
-        this.ctx.lineTo(this.x, this.y-8);
-        this.ctx.lineTo(this.x-6, this.y-12);
-        this.ctx.lineTo(this.x, this.y+16);
-        this.ctx.fill();
-
-        /** Cockpit */
-        this.ctx.fillStyle  = this.color;
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.x, this.y+4);
-        this.ctx.lineTo(this.x+2, this.y-6);
-        this.ctx.lineTo(this.x-2, this.y-6);
-        this.ctx.lineTo(this.x, this.y+4);
-        this.ctx.fill();
-
-
-        /** Asa traseira*/
-        this.ctx.fillStyle  = this.color;
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.x, this.y-16);
-        this.ctx.lineTo(this.x+14, this.y-24);
+        this.ctx.lineTo(this.x-8, this.y-14);
         this.ctx.lineTo(this.x, this.y-20);
-        this.ctx.lineTo(this.x-14, this.y-24);
-        this.ctx.lineTo(this.x, this.y-16);
         this.ctx.fill();
-    }
+		this.ctx.stroke();
+		
+        /** Terceiro Poligono (cockpit) */
+        this.ctx.fillStyle  = this.color;
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.x, this.y-6);
+        this.ctx.lineTo(this.x+2, this.y-2);
+        this.ctx.lineTo(this.x, this.y+8);
+        this.ctx.lineTo(this.x-2, this.y-2);
+        this.ctx.lineTo(this.x, this.y-6);
+        this.ctx.fill();
+		
+		/** Quarto Poligono (asa traseira) */
+        this.ctx.fillStyle  = this.color;
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.x, this.y-12);
+        this.ctx.lineTo(this.x+16, this.y-24);
+        this.ctx.lineTo(this.x, this.y-20);
+        this.ctx.lineTo(this.x-16, this.y-24);
+        this.ctx.lineTo(this.x, this.y-12);
+        this.ctx.fill();
+		
+		/** Quarto Poligono (asa traseira) */
+        this.ctx.fillStyle  = "#707070";
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.x, this.y-6);
+        this.ctx.lineTo(this.x+2, this.y-20);
+        this.ctx.lineTo(this.x, this.y-24);
+        this.ctx.lineTo(this.x-2, this.y-20);
+        this.ctx.lineTo(this.x, this.y-6);
+        this.ctx.fill();    
+	}
 }
 
 class NaveVermelha extends Nave{
@@ -122,7 +128,7 @@ class NaveRoxa extends Nave{
 
     constructor(x, y, direcao){
         // super (x, y, speedX, speedY, color)
-        super(x, y, direcao * 2, 2, "#800080");
+        super(x, y, direcao * 1, 3, "#800080");
 
         this.pushBullet(new EnemyBullet(x, y, 2, 6, "cyan"));
         this.pushBullet(new EnemyBullet(x, y, 0, 8, "tomato"));

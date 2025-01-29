@@ -51,7 +51,7 @@ class Player extends Componente{
                 delete(this.bullet);
                 this.bullet = null;
 				componente.y = 0;
-				componente.x = Math.floor (Math.random() * (myGame.canvas.width - 40)) + 20;
+				componente.x = Math.floor (Math.random() * (myGame.canvas.width - 96)) + 48;
                 return true; 
             }
             return false;
