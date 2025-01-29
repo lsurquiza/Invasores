@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<title>JS Game</title>
+<style>
+body{
+    font-family: 'Lucida Console', monospace;
+    background-color: #e2e2e2;
+    color: #1f1f1f;
+	font-size: 20px;
+}
+canvas {
+    border:1px solid #000000;
+    background-color: #204070;
+    margin: 0 auto;
+	cursor: none;
+}
+#tela, #area{
+    margin: 0 auto;
+}
+#mode {
+	position: absolute;
+	width: 80%;
+	text-align: center;
+	top: 20%;
+	left: 10%;
+	height: 320px;
+	color: white;
+	background-color: #3a3a3a;
+	font-size: 1.5em;
+}
+</style>
+
+<script src="./javascript/game.js"></script>
+<script src="./javascript/controles.js"></script>
+<script src="./javascript/componentes.js"></script>
+<script src="./javascript/naves.js"></script>
+<script src="./javascript/player.js"></script>
+
+
+</head>
+<body onload="startGame()">
+    <div id="area">
+        <div id="tela">
+            <div id="display">
+                Largura: <span id="w"></span><br>
+                Altura: <span id="h"></span><br>
+                Mortes Inimigas: <span id="score">0</span><br>
+            </div>
+        </div>
+    </div>
+    <div id="mode">
+        <h1>Invasores</h1>
+        <div id="modeText">Testando MODE</div>
+    </div>
+</body>
+</html>
