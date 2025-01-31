@@ -71,7 +71,7 @@ class Nave extends Componente {
 		this.ctx.stroke();
 		
         /** Terceiro Poligono (cockpit) */
-        this.ctx.fillStyle  = this.color;
+        this.ctx.fillStyle  = "cyan"//this.color;
         this.ctx.beginPath();
         this.ctx.moveTo(this.x, this.y-6);
         this.ctx.lineTo(this.x+2, this.y-2);
