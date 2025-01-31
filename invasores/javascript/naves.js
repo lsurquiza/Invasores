@@ -106,7 +106,7 @@ class NaveVermelha extends Nave{
 
     constructor(x, y, direcao){
         // super (x, y, speedX, speedY, color)
-        super(x, y, direcao * 2, 2, "#800000");
+        super(x, y, direcao * 2, 2, "#cc1a1a");
 
         this.pushBullet(new EnemyBullet(x, y, 0, 6, "tomato")); 
         this.pushBullet(new EnemyBullet(x, y, 0, 9, "tomato"));
@@ -117,7 +117,7 @@ class NaveAzul extends Nave{
 
     constructor(x, y, direcao){
         // super (x, y, speedX, speedY, color)
-        super(x, y, direcao * 3, 1, "#000080");
+        super(x, y, direcao * 3, 1, "#1a1acc");
 
         this.pushBullet(new EnemyBullet(x, y, 2, 6, "cyan"));
         this.pushBullet(new EnemyBullet(x, y, -2, 6, "cyan"));
@@ -128,7 +128,7 @@ class NaveRoxa extends Nave{
 
     constructor(x, y, direcao){
         // super (x, y, speedX, speedY, color)
-        super(x, y, direcao * 1, 3, "#800080");
+        super(x, y, direcao * 1, 3, "#750475");
 
         this.pushBullet(new EnemyBullet(x, y, 2, 6, "cyan"));
         this.pushBullet(new EnemyBullet(x, y, 0, 8, "tomato"));
