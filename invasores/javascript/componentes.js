@@ -5,6 +5,7 @@ class Componente{
         this.height = height;
         this.x = x;
         this.y = y;
+        this.xBase = x;         
         this.speedX = speedX;
         this.speedY = speedY;
         this.color = color;
@@ -12,13 +13,21 @@ class Componente{
     }
 
     move(){
-        this.x = this.x + this.speedX;
-        this.y = this.y + this.speedY;
-        this.update();
+        this.calculaX();
+        this.calculaY();
+        this.draw();
     }
     
-    update(){
+    draw(){
         this.ctx.fillStyle = this.color;
         this.ctx.fillRect(this.x - (this.width/2), this.y - (this.height/2), this.width, this.height);
+    }
+
+    calculaX(){
+        this.x += this.speedX;
+    }
+
+    calculaY(){
+        this.y += this.speedY;
     }
 }

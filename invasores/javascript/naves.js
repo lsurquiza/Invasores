@@ -42,7 +42,7 @@ class Nave extends Componente {
         });
     }
 
-    update(){
+    draw(){
         this.ctx.fillStyle  = "#707070";
 		this.ctx.fillRect(this.x-14, this.y-12, 28, 8);
 		this.ctx.fillRect(this.x-5, this.y+6, 10, 10);
