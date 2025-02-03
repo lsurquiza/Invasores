@@ -21,16 +21,20 @@ class Nave extends Componente {
         this.enemyBullets.push(enemyBullet);
     }
 
-    move() {
-        super.move();
-        
-        if (this.x < this.width || this.x > myGame.canvas.width - this.width){
-            this.speedX *= -1;
+    move() {        
+        if (this.x < this.width){
+            this.x = myGame.canvas.width - this.width;
+        } 
+        if (this.x > myGame.canvas.width - this.width){
+            this.x = this.width;
         }
+        
+        super.move();
 
         if (this.y > myGame.canvas.height - this.height){
-            this.y = 20;
-			this.x = Math.floor (Math.random() * (myGame.canvas.width - 96)) + 48;
+            this.y = 0;
+		    this.x = Math.floor (Math.random() * (myGame.canvas.width - 96)) + 48;
+            //delete(this);
         }
 
         this.enemyBullets.forEach(enemyBullet => {
@@ -106,10 +110,16 @@ class NaveVermelha extends Nave{
 
     constructor(x, y, direcao){
         // super (x, y, speedX, speedY, color)
-        super(x, y, direcao * 2, 2, "#cc1a1a");
+        super(x, y, direcao, 3, "#cc1a1a");
 
-        this.pushBullet(new EnemyBullet(x, y, 0, 6, "tomato")); 
-        this.pushBullet(new EnemyBullet(x, y, 0, 9, "tomato"));
+        this.calculaX = function (){
+            if(this.y == 0) this.xBase = this.x;
+            // X é calculado em função de Y
+            this.x = this.xBase + this.speedX*(Math.floor(96 * Math.sin(Math.PI * this.y / 256)));
+            this.x = this.x < this.width? this.width: this.x;
+            this.x = this.x > myGame.canvas.width - this.width? myGame.canvas.width - this.width: this.x;
+
+        }
     }
 }
 
@@ -117,10 +127,18 @@ class NaveAzul extends Nave{
 
     constructor(x, y, direcao){
         // super (x, y, speedX, speedY, color)
-        super(x, y, direcao * 3, 1, "#1a1acc");
+        super(x, y, direcao, 2, "#1a1acc");
 
-        this.pushBullet(new EnemyBullet(x, y, 2, 6, "cyan"));
-        this.pushBullet(new EnemyBullet(x, y, -2, 6, "cyan"));
+        this.pushBullet(new EnemyBullet(x, y, 0, 6, "cyan")); 
+
+        this.calculaX = function (){
+            if(this.y == 0) this.xBase = this.x;
+            // X é calculado em função de Y
+            this.x = this.xBase + this.speedX*(Math.floor(128 * Math.sin(Math.PI * this.y / 128)));
+            this.x = this.x < this.width? this.width: this.x;
+            this.x = this.x > myGame.canvas.width - this.width? myGame.canvas.width - this.width: this.x;
+
+        }
     }
 }
 
@@ -130,9 +148,8 @@ class NaveRoxa extends Nave{
         // super (x, y, speedX, speedY, color)
         super(x, y, direcao * 1, 3, "#750475");
 
-        this.pushBullet(new EnemyBullet(x, y, 2, 6, "cyan"));
-        this.pushBullet(new EnemyBullet(x, y, 0, 8, "tomato"));
-        this.pushBullet(new EnemyBullet(x, y, -2, 6, "cyan"));
+        this.pushBullet(new EnemyBullet(x, y, 2, 6, "magenta"));        
+        this.pushBullet(new EnemyBullet(x, y, -2, 6, "magenta"));
     }
 }
 
@@ -142,7 +159,7 @@ class NaveKamikaze extends Nave{
     constructor(x, y){
         // super (x, y, speedX, speedY, color)
         super(x, y, 0, 0, "#DAA520");    
-        this.pushBullet(new EnemyBullet(x, y, 0, 8, "yellow")); 
+        //this.pushBullet(new EnemyBullet(x, y, 0, 8, "yellow")); 
     }
 
     move(){
@@ -150,15 +167,15 @@ class NaveKamikaze extends Nave{
 
         if (Math.abs(this.x - myGame.player.x) < 6){
             this.speedX = 0;
-            this.speedY = 6;           
+            this.speedY = 8;           
         }
         else if (this.x - myGame.player.x <= -6){
             this.speedX = 4;
-            this.speedY = 3;
+            this.speedY = 1;
         }
         else if (this.x - myGame.player.x >= 6){
             this.speedX = -4;
-            this.speedY = 3;
+            this.speedY = 1;
         } 
     }
 }

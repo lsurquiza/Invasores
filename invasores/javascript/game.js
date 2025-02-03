@@ -177,7 +177,7 @@ function startGame() {
   myGame.start();
   
   // Adicionar as inimigas
- 
+  
   myGame.addNave(new NaveVermelha(WIDTH/2, 20, CENTRO));
 
   document.querySelector('#w').innerHTML = myGame.canvas.width;
